@@ -32,7 +32,8 @@ export function LoginForm() {
   }
 
   return (
-    <Form {...form}>
+    <div className="w-96 border grow-0 p-4 rounded-md mb-16">
+      <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
@@ -52,16 +53,17 @@ export function LoginForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>password</FormLabel>
+              <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} type="password"/>
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Sign in</Button>
       </form>
     </Form>
+    </div>
   );
 }
