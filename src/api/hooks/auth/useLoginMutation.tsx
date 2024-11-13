@@ -1,5 +1,6 @@
 import { ENDPOINTS } from "@/api/endpoints";
 import { LoginDto, LoginReponseDto } from "@/api/types/auth.types";
+import { routing } from "@/lib/routing";
 import { useStore } from "@/state/store";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
@@ -36,7 +37,7 @@ export const useLoginMutation = (onError?: () => void) => {
     onSuccess: (data) => {
       setUser(data.user);
       setAccessToken(data.access_token);
-      router.replace("/dashboard");
+      router.replace(routing.dashboard.root);
     },
   });
   return { data, mutate, isError, isSuccess, isPending };
