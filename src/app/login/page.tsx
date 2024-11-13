@@ -1,4 +1,4 @@
-import { LoginForm } from "@/components/login-form";
+import { LoginForm } from "@/components/features/login/login-form";
 
 export default function LoginPage() {
   return (
@@ -6,6 +6,5 @@ export default function LoginPage() {
       <h1 className="text-5xl">MeshCentral</h1>
       <LoginForm />
     </div>
-    
   );
 }
