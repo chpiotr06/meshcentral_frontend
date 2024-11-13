@@ -1,4 +1,5 @@
 import { ENDPOINTS } from "@/api/endpoints";
+import { routing } from "@/lib/routing";
 import { useStore } from "@/state/store";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
@@ -38,7 +39,7 @@ export const useLogoutMutation = (onError?: () => void) => {
     onSuccess: () => {
       setUser(null);
       setAccessToken(null);
-      router.push("/login");
+      router.push(routing.login);
     },
   });
   return { data, mutate, isError, isSuccess, isPending };

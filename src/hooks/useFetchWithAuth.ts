@@ -1,3 +1,4 @@
+import { routing } from "@/lib/routing";
 import { useStore } from "@/state/store";
 import { useRouter } from "next/navigation";
 
@@ -6,7 +7,7 @@ export const useFetchWithAuth = (url: string | URL, options: RequestInit) => {
   const router = useRouter();
 
   if (!access_token) {
-    router.push("/login");
+    router.push(routing.login);
   }
 
   const response = fetch(url, {
