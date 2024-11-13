@@ -4,13 +4,13 @@ import { create } from "zustand";
 export type StoreT = {
   user: UserT | null;
   access_token: string | null;
-  setUser: (user: UserT) => void;
-  setAccessToken: (token: string) => void;
+  setUser: (user: UserT | null) => void;
+  setAccessToken: (token: string | null) => void;
 };
 
 export const useStore = create<StoreT>((set) => ({
   user: null,
   access_token: null,
-  setUser: (user: UserT) => set(() => ({ user })),
-  setAccessToken: (token: string) => set(() => ({ access_token: token })),
+  setUser: (user) => set(() => ({ user })),
+  setAccessToken: (token) => set(() => ({ access_token: token })),
 }));
