@@ -18,7 +18,7 @@ export const fetchLogout = async (
 
   if (!response.ok) throw new Error("Error while logging in");
 
-  return response.json();
+  return;
 };
 
 export const useLogoutMutation = (onError?: () => void) => {
@@ -34,11 +34,11 @@ export const useLogoutMutation = (onError?: () => void) => {
     unknown
   >({
     mutationFn: () => fetchLogout(accessToken),
-    onError,
+    onError: onError,
     onSuccess: () => {
       setUser(null);
       setAccessToken(null);
-      router.replace("/login");
+      router.push("/login");
     },
   });
   return { data, mutate, isError, isSuccess, isPending };

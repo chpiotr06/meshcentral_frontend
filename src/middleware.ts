@@ -1,11 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
+import { jwtVerify } from "jose";
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const cookie = request.cookies.get("Nest-Auth");
+  if (!cookie || cookie.value === "deleted")
+    return NextResponse.redirect(new URL("/login", request.url));
 
-  if (!cookie || !cookie.value || cookie.value === "deleted") {
+  const secret = new TextEncoder().encode(process.env.API_JWT_SECRET);
+
+  const { payload } = await jwtVerify(cookie.value, secret);
+
+  if (!payload) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
+
+  if (request.url.includes("admin") && !payload.isAdmin)
+    return NextResponse.redirect(
+      new URL("/dashboard/unauthorized", request.url)
+    );
 
   return NextResponse.next();
 }
