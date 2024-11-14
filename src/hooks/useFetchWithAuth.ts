@@ -1,22 +1,17 @@
-import { routing } from "@/lib/routing";
-import { useStore } from "@/state/store";
-import { useRouter } from "next/navigation";
+import { useUserStore } from "@/state/store";
 
-export const useFetchWithAuth = (url: string | URL, options: RequestInit) => {
-  const access_token = useStore((state) => state.access_token);
-  const router = useRouter();
+export const useFetchWithAuth = () => {
+  const access_token = useUserStore((state) => state.access_token);
 
-  if (!access_token) {
-    router.push(routing.login);
-  }
+  const fetcher = (url: string | URL, options?: RequestInit) =>
+    fetch(url, {
+      ...options,
+      headers: {
+        ...options?.headers,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
 
-  const response = fetch(url, {
-    ...options,
-    headers: {
-      ...options.headers,
-      Authorization: `Bearer ${access_token}`,
-    },
-  });
-
-  return response;
+  return fetcher;
 };
