@@ -18,7 +18,7 @@ import { useLoginMutation } from "@/api/hooks/auth/useLoginMutation";
 
 const formSchema = z.object({
   email: z.string().email(),
-  password: z.string(),
+  password: z.string().refine((value) => value !== "", "Password is required"),
 });
 
 export function LoginForm() {

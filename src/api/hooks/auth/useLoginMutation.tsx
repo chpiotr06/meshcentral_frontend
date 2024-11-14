@@ -1,7 +1,8 @@
 import { ENDPOINTS } from "@/api/endpoints";
 import { LoginDto, LoginReponseDto } from "@/api/types/auth.types";
+import { useToast } from "@/hooks/use-toast";
 import { routing } from "@/lib/routing";
-import { useStore } from "@/state/store";
+import { useUserStore } from "@/state/store";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 // import { cookies } from "next/headers";
@@ -16,15 +17,19 @@ export const fetchLogin = async (
     headers: { "Content-Type": "application/json" },
   });
 
+  console.log(response.ok);
   if (!response.ok) throw new Error("Error while logging in");
 
-  return response.json();
+  const data = await response.json();
+
+  return data;
 };
 
-export const useLoginMutation = (onError?: () => void) => {
-  const setUser = useStore((state) => state.setUser);
-  const setAccessToken = useStore((state) => state.setAccessToken);
+export const useLoginMutation = () => {
+  const setUser = useUserStore((state) => state.setUser);
+  const setAccessToken = useUserStore((state) => state.setAccessToken);
   const router = useRouter();
+  const { toast } = useToast();
 
   const { data, mutate, isError, isPending, isSuccess } = useMutation<
     LoginReponseDto,
@@ -33,11 +38,24 @@ export const useLoginMutation = (onError?: () => void) => {
     unknown
   >({
     mutationFn: (credentials) => fetchLogin(credentials),
-    onError,
+    onError: () => {
+      toast({
+        variant: "destructive",
+        duration: 5000,
+        title: "Password or email is invalid",
+        description: "Check supplied credentials and try again",
+      });
+      console.log("called error");
+    },
     onSuccess: (data) => {
+      toast({
+        variant: "success",
+        duration: 5000,
+        title: "Successfully logged in.",
+      });
       setUser(data.user);
       setAccessToken(data.access_token);
-      router.replace(routing.dashboard.root);
+      router.push(routing.dashboard.root);
     },
   });
   return { data, mutate, isError, isSuccess, isPending };

@@ -7,4 +7,7 @@ export const ENDPOINTS = {
     login: `${API_BASE}${API_PREFIX}/auth/login`,
     logout: `${API_BASE}${API_PREFIX}/auth/logout`,
   },
+  organizations: {
+    base: `${API_BASE}${API_PREFIX}/organizations`,
+  },
 };
