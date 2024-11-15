@@ -1,5 +1,6 @@
 export type UserT = {
-  id: number
-  email: string
-  organizationId: number | null
-}
+  id: number;
+  email: string;
+  isAdmin: boolean;
+  organizationId: number | null;
+};
