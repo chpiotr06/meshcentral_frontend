@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim"; 
+import { Button } from "@/components/ui/button";
 
 export default () => {
   const [init, setInit] = useState(false);
@@ -23,7 +24,7 @@ export default () => {
     () => ({
       background: {
         color: {
-          value: "#000000",
+          value: "#ffffff",
         },
       },
       fpsLimit: 120,
@@ -50,10 +51,10 @@ export default () => {
       },
       particles: {
         color: {
-          value: "#ffffff",
+          value: "#000000",
         },
         links: {
-          color: "#ffffff",
+          color: "#000000",
           distance: 150,
           enable: true,
           opacity: 0.5,
@@ -92,11 +93,19 @@ export default () => {
 
   if (init) {
     return (
-      <Particles
-        id="tsparticles"
-        particlesLoaded={particlesLoaded}
-        options={options}
-      />
+      <div className="relative">
+        <Particles
+          id="tsparticles"
+          particlesLoaded={particlesLoaded}
+          options={options}
+        />
+        <div className="flex justify-center h-screen items-center absolute w-screen flex-col text-7xl gap-4">
+          <h1>MeshCentral</h1>
+            <Button>Sign in</Button>
+        </div>
+        
+      </div>
+      
     );
   }
 
