@@ -100,7 +100,7 @@ export default () => {
           particlesLoaded={particlesLoaded}
           options={options}
         />
-        <div className="flex justify-center h-screen items-center absolute w-screen flex-col text-7xl gap-4">
+        <div className="flex justify-center h-screen items-center absolute w-screen flex-col text-7xl gap-4 pb-8">
           <h1>MeshCentral</h1>
           <Link href='/login'>
             <Button>Sign in</Button>
