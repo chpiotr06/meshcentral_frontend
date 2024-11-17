@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim"; 
 import { Button } from "@/components/ui/button";
+import Link from 'next/link'
 
 export default () => {
   const [init, setInit] = useState(false);
@@ -101,7 +102,9 @@ export default () => {
         />
         <div className="flex justify-center h-screen items-center absolute w-screen flex-col text-7xl gap-4">
           <h1>MeshCentral</h1>
+          <Link href='/login'>
             <Button>Sign in</Button>
+          </Link>
         </div>
         
       </div>
