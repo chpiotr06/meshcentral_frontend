@@ -6,7 +6,7 @@ import { loadSlim } from "@tsparticles/slim";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link'
 
-export default () => {
+export default function Home() {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -16,10 +16,6 @@ export default () => {
       setInit(true);
     });
   }, []);
-
-  const particlesLoaded = (container) => {
-    console.log(container);
-  };
 
   const options = useMemo(
     () => ({
@@ -62,10 +58,10 @@ export default () => {
           width: 1,
         },
         move: {
-          direction: "none",
+          direction: undefined,
           enable: true,
           outModes: {
-            default: "bounce",
+            default: "bounce" as const,
           },
           random: false,
           speed: 6,
@@ -97,7 +93,6 @@ export default () => {
       <div className="relative">
         <Particles
           id="tsparticles"
-          particlesLoaded={particlesLoaded}
           options={options}
         />
         <div className="flex justify-center h-screen items-center absolute w-screen flex-col text-7xl gap-4 pb-8">
@@ -106,9 +101,7 @@ export default () => {
             <Button>Sign in</Button>
           </Link>
         </div>
-        
       </div>
-      
     );
   }
 
