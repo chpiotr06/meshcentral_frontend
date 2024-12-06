@@ -1,0 +1,18 @@
+# If everything passed, try to build
+echo '🔎🔎 Linting project. 🔎🔎'
+
+npm run lint ||
+(
+    echo '❌👷 Next linting failed. View the errors above to see why. 👷❌'
+    false;
+)
+
+
+# If everything passed, try to build
+echo '🔎🔎 Everything passed. Trying to build now. 🔎🔎'
+
+npm run build ||
+(
+    echo '❌👷 Next build failed. View the errors above to see why. 👷❌'
+    false;
+)
