@@ -6,8 +6,15 @@ export const ENDPOINTS = {
     register: `${API_BASE}${API_PREFIX}/auth/register`,
     login: `${API_BASE}${API_PREFIX}/auth/login`,
     logout: `${API_BASE}${API_PREFIX}/auth/logout`,
+    createUserWithOrg: `${API_BASE}${API_PREFIX}/auth/register-with-org`,
   },
   organizations: {
     base: `${API_BASE}${API_PREFIX}/organizations`,
+  },
+  users: {
+    base: `${API_BASE}${API_PREFIX}/users`,
+    assign: `${API_BASE}${API_PREFIX}/users/assign`,
+    bulkAssign: `${API_BASE}${API_PREFIX}/users/assign-bulk`,
+    noOrg: `${API_BASE}${API_PREFIX}/users/no-org`,
   },
 };

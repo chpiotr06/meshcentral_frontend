@@ -1,5 +1,5 @@
 import { ENDPOINTS } from "@/api/endpoints";
-import { CreateOrgDto } from "@/api/types/organization.types";
+import { AssignUserDto } from "@/api/types/users";
 import { useToast } from "@/hooks/use-toast";
 import { useFetchWithAuth } from "@/hooks/useFetchWithAuth";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -12,11 +12,11 @@ export const useAddOrderMutation = () => {
   const { data, mutate, isError, isSuccess, isPending } = useMutation<
     Response,
     Error,
-    CreateOrgDto,
+    AssignUserDto,
     unknown
   >({
     mutationFn: async (orgData) => {
-      const response = await fetcher(ENDPOINTS.organizations.base, {
+      const response = await fetcher(ENDPOINTS.users.assign, {
         method: "POST",
         body: JSON.stringify(orgData),
       });
@@ -30,16 +30,16 @@ export const useAddOrderMutation = () => {
       toast({
         variant: "destructive",
         duration: 5000,
-        title: "There was an error while adding new organization",
+        title: "There was an error while assigning user to organization",
       });
     },
     onSuccess: () => {
       toast({
         variant: "success",
         duration: 5000,
-        title: "Successfully added new organization",
+        title: "Successfully assigned user to organization",
       });
-      queryClient.invalidateQueries({ queryKey: ["organizations"] });
+      queryClient.invalidateQueries({ queryKey: ["usersWithoutOrg"] });
     },
   });
   return { data, mutate, isError, isSuccess, isPending };

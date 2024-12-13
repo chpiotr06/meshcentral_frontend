@@ -31,7 +31,21 @@ export function Navigation() {
                   title="Add organization"
                   href={routing.dashboard.addOrganization}
                 >
-                  Add organization
+                  Add organization to system
+                </ListItem>
+                <ListItem
+                  key="add-user"
+                  title="Add User"
+                  href={routing.dashboard.addUser}
+                >
+                  Add User to system
+                </ListItem>
+                <ListItem
+                  key="add-assign"
+                  title="Assign users"
+                  href={routing.dashboard.assignUser}
+                >
+                  Assign users to organization
                 </ListItem>
               </ul>
             </NavigationMenuContent>
