@@ -1,17 +1,30 @@
 import { useUserStore } from "@/state/store";
+import { useEffect, useState } from "react";
 
 export const useFetchWithAuth = () => {
-  const access_token = useUserStore((state) => state.access_token);
+  const [isHydrated, setIsHydrated] = useState(false);
 
-  const fetcher = (url: string | URL, options?: RequestInit) =>
-    fetch(url, {
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  const fetcher = async (url: string | URL, options?: RequestInit) => {
+    if (!isHydrated) {
+      // Wait for the store to be hydrated
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
+
+    const currentToken = useUserStore.getState().access_token;
+
+    return fetch(url, {
       ...options,
       headers: {
         ...options?.headers,
         "Content-Type": "application/json",
-        Authorization: `Bearer ${access_token}`,
+        Authorization: `Bearer ${currentToken}`,
       },
     });
+  };
 
   return fetcher;
 };

@@ -6,5 +6,7 @@ export const routing = {
     admin: "/dashboard/admin",
     unauthorized: "/dashboard/unauthorized",
     addOrganization: "/dashboard/admin/add-organization",
+    addUser: "/dashboard/admin/add-user",
+    assignUser: "/dashboard/admin/assign-user",
   },
 };

@@ -1,10 +1,12 @@
+"use client";
+
 import { ENDPOINTS } from "@/api/endpoints";
-import { CreateOrgDto } from "@/api/types/organization.types";
+import { createUserWithOrgDto } from "@/api/types/users";
 import { useToast } from "@/hooks/use-toast";
 import { useFetchWithAuth } from "@/hooks/useFetchWithAuth";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export const useAddOrderMutation = () => {
+export const useAddUserWithOrgMutation = () => {
   const fetcher = useFetchWithAuth();
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -12,11 +14,11 @@ export const useAddOrderMutation = () => {
   const { data, mutate, isError, isSuccess, isPending } = useMutation<
     Response,
     Error,
-    CreateOrgDto,
+    createUserWithOrgDto,
     unknown
   >({
     mutationFn: async (orgData) => {
-      const response = await fetcher(ENDPOINTS.organizations.base, {
+      const response = await fetcher(ENDPOINTS.auth.createUserWithOrg, {
         method: "POST",
         body: JSON.stringify(orgData),
       });
@@ -27,19 +29,22 @@ export const useAddOrderMutation = () => {
       return data;
     },
     onError: () => {
+      console.log("error");
       toast({
         variant: "destructive",
         duration: 5000,
-        title: "There was an error while adding new organization",
+        title: "There was an error while creating new user",
       });
     },
     onSuccess: () => {
+      console.log("success");
+
       toast({
         variant: "success",
         duration: 5000,
-        title: "Successfully added new organization",
+        title: "Successfully added new user",
       });
-      queryClient.invalidateQueries({ queryKey: ["organizations"] });
+      queryClient.invalidateQueries({ queryKey: ["usersWithoutOrg"] });
     },
   });
   return { data, mutate, isError, isSuccess, isPending };
