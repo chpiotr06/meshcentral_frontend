@@ -39,11 +39,11 @@ export const AddOrganizationForm = () => {
   };
 
   return (
-    <div className="border grow-0 p-4 rounded-md mt-8 place-self-center">
+    <div className="border grow-0 p-4 rounded-md mt-8 place-self-center w-fit mx-auto">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <div className="flex gap-8">
-            <div className="w-80">
+          <div className="grid grid-cols-2 gap-8">
+            <div>
               <FormField
                 control={form.control}
                 name="name"
@@ -53,7 +53,9 @@ export const AddOrganizationForm = () => {
                     <FormControl>
                       <Input placeholder="Acme inc." {...field} />
                     </FormControl>
-                    <FormDescription>Legal name of the company.</FormDescription>
+                    <FormDescription>
+                      Legal name of the company.
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -88,9 +90,9 @@ export const AddOrganizationForm = () => {
                   </FormItem>
                 )}
               />
-          </div>
-          <div className="w-64">
-            <FormField
+            </div>
+            <div>
+              <FormField
                 control={form.control}
                 name="addressLine1"
                 render={({ field }) => (
@@ -99,7 +101,9 @@ export const AddOrganizationForm = () => {
                     <FormControl>
                       <Input placeholder="Cracow" {...field} />
                     </FormControl>
-                    <FormDescription>First line of the address.</FormDescription>
+                    <FormDescription>
+                      First line of the address.
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -113,7 +117,9 @@ export const AddOrganizationForm = () => {
                     <FormControl>
                       <Input placeholder="NY Avenue 42" {...field} />
                     </FormControl>
-                    <FormDescription>Second line of the address.</FormDescription>
+                    <FormDescription>
+                      Second line of the address.
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -127,15 +133,25 @@ export const AddOrganizationForm = () => {
                     <FormControl>
                       <Input placeholder="Apartment 13" {...field} />
                     </FormControl>
-                    <FormDescription>Third line of the address.</FormDescription>
+                    <FormDescription>
+                      Third line of the address.
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit" disabled={isSuccess || isPending} style={{float: "right", marginTop: 8}}>
-                  {!isPending ? "Submit" : <LoaderCircle className="animate-spin" />}
+              <Button
+                type="submit"
+                disabled={isSuccess || isPending}
+                style={{ float: "right", marginTop: 8 }}
+              >
+                {!isPending ? (
+                  "Submit"
+                ) : (
+                  <LoaderCircle className="animate-spin" />
+                )}
               </Button>
-            </div> 
+            </div>
           </div>
         </form>
       </Form>
