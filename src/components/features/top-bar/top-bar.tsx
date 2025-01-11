@@ -8,7 +8,7 @@ export const TopBar = () => {
   const { mutate } = useLogoutMutation();
 
   return (
-    <div className="flex items-center border-b border-slate-700 h-14 justify-between p-4">
+    <div className="flex items-center border-b border-slate-700 h-14 justify-between p-4 z-50">
       <Navigation />
       <Button onClick={() => mutate()}>Wyloguj</Button>
     </div>

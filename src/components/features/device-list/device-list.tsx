@@ -11,7 +11,7 @@ const DeviceList = () => {
       center={[50.062332, 19.937573]}
       zoom={13}
       scrollWheelZoom={true}
-      className="w-full h-[calc(100vh-56px)] rounded-3xl"
+      className="w-full h-[calc(100vh-56px-2*16px)] rounded-3xl z-10"
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
