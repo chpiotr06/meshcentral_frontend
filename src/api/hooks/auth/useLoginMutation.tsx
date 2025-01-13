@@ -17,7 +17,6 @@ export const fetchLogin = async (
     headers: { "Content-Type": "application/json" },
   });
 
-  console.log(response.ok);
   if (!response.ok) throw new Error("Error while logging in");
 
   const data = await response.json();
@@ -45,7 +44,6 @@ export const useLoginMutation = () => {
         title: "Password or email is invalid",
         description: "Check supplied credentials and try again",
       });
-      console.log("called error");
     },
     onSuccess: (data) => {
       toast({

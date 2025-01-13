@@ -1,12 +1,10 @@
-"use client";
-
 import { ENDPOINTS } from "@/api/endpoints";
-import { createUserWithOrgDto } from "@/api/types/users";
+import { AddDeviceDto } from "@/api/types/devices.types";
 import { useToast } from "@/hooks/use-toast";
 import { useFetchWithAuth } from "@/hooks/useFetchWithAuth";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export const useAddUserWithOrgMutation = () => {
+export const useAddDeviceMutation = (successCallback: () => void) => {
   const fetcher = useFetchWithAuth();
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -14,34 +12,40 @@ export const useAddUserWithOrgMutation = () => {
   const { data, mutate, isError, isSuccess, isPending } = useMutation<
     Response,
     Error,
-    createUserWithOrgDto,
+    AddDeviceDto,
     unknown
   >({
     mutationFn: async (orgData) => {
-      const response = await fetcher(ENDPOINTS.auth.createUserWithOrg, {
+      const response = await fetcher(ENDPOINTS.devices.base, {
         method: "POST",
         body: JSON.stringify(orgData),
       });
 
-      if (!response.ok) throw new Error("Error fetching data");
-      const data = response.json();
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message);
 
       return data;
     },
-    onError: () => {
+    onError: (error) => {
+      let title = "There was an error while adding new device";
+      if (error.message === "User not assigned to any organization") {
+        title = "You are not assigned to any organisation.";
+      }
+
       toast({
         variant: "destructive",
         duration: 5000,
-        title: "There was an error while creating new user",
+        title: title,
       });
     },
     onSuccess: () => {
+      successCallback();
       toast({
         variant: "success",
         duration: 5000,
-        title: "Successfully added new user",
+        title: "Successfully added new device",
       });
-      queryClient.invalidateQueries({ queryKey: ["usersWithoutOrg"] });
+      queryClient.invalidateQueries({ queryKey: ["devices"] });
     },
   });
   return { data, mutate, isError, isSuccess, isPending };

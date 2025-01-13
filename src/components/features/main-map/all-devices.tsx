@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
-const DeviceList = () => {
+const AllDevices = () => {
   return (
     <MapContainer
       center={[50.062332, 19.937573]}
@@ -29,4 +29,4 @@ const DeviceList = () => {
   );
 };
 
-export default DeviceList;
+export default AllDevices;

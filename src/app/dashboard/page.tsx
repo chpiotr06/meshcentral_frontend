@@ -1,4 +1,4 @@
-import { Map } from "@/components/features/device-list/map";
+import { Map } from "@/components/features/main-map/map";
 
 export default function DashboardPage() {
   return <Map />;
