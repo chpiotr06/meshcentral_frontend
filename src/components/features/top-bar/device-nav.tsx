@@ -26,13 +26,6 @@ export const DeviceNav = () => {
           >
             Device list with route map
           </ListItem>
-          <ListItem
-            key="add-device"
-            title="Add Device"
-            href={routing.devices.addDevice}
-          >
-            Add Device to system
-          </ListItem>
         </ul>
       </NavigationMenuContent>
     </NavigationMenuItem>

@@ -18,12 +18,9 @@ export const fetchLogout = async (
     },
   });
 
-  console.log(response);
-
   if (!response.ok) throw new Error("Error while logging in");
 
   const data = await response.json();
-  console.log(data);
 
   return data;
 };
@@ -50,7 +47,6 @@ export const useLogoutMutation = () => {
       });
     },
     onSuccess: () => {
-      console.log("called before fetch?");
       toast({
         variant: "success",
         duration: 5000,

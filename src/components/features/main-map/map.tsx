@@ -2,12 +2,12 @@
 
 import dynamic from "next/dynamic";
 
-const DeviceList = dynamic(() => import("./device-list"), { ssr: false });
+const AllDevices = dynamic(() => import("./all-devices"), { ssr: false });
 
 export const Map = () => {
   return (
     <div className="p-4">
-      <DeviceList />
+      <AllDevices />
     </div>
   );
 };

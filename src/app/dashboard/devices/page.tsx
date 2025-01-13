@@ -1,3 +1,9 @@
+import { DevicesList } from "@/components/features/device-list/devices-list";
+
 export default function DeviceListPage() {
-  return <div>Device list page</div>;
+  return (
+    <div>
+      <DevicesList />
+    </div>
+  );
 }
