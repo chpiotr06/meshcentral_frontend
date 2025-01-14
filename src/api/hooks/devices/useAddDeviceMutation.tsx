@@ -1,5 +1,5 @@
 import { ENDPOINTS } from "@/api/endpoints";
-import { AddDeviceDto } from "@/api/types/devices.types";
+import { AddDeviceDto, AddDeviceResponse } from "@/api/types/devices.types";
 import { useToast } from "@/hooks/use-toast";
 import { useFetchWithAuth } from "@/hooks/useFetchWithAuth";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -9,8 +9,8 @@ export const useAddDeviceMutation = (successCallback: () => void) => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  const { data, mutate, isError, isSuccess, isPending } = useMutation<
-    Response,
+  const { data, mutate, isError, isSuccess, isPending, reset } = useMutation<
+    AddDeviceResponse,
     Error,
     AddDeviceDto,
     unknown
@@ -46,6 +46,7 @@ export const useAddDeviceMutation = (successCallback: () => void) => {
         title: "Successfully added new device",
       });
       queryClient.invalidateQueries({ queryKey: ["devices"] });
+      reset();
     },
   });
   return { data, mutate, isError, isSuccess, isPending };
