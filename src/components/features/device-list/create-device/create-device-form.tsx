@@ -34,6 +34,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 
 export const CreateDeviceForm = ({ children }: { children: ReactNode }) => {
   const schema = useCreateDeviceFormSchema();
@@ -49,7 +50,7 @@ export const CreateDeviceForm = ({ children }: { children: ReactNode }) => {
     },
   });
 
-  const { mutate, isPending, isSuccess } = useAddDeviceMutation(() => {
+  const { mutate, isPending, isSuccess, data } = useAddDeviceMutation(() => {
     setOpen(false);
     form.reset();
   });
@@ -137,7 +138,7 @@ export const CreateDeviceForm = ({ children }: { children: ReactNode }) => {
           </Form>
         </DialogContent>
       </Dialog>
-      {isSuccess && (
+      {isSuccess && data && (
         <AlertDialog defaultOpen>
           <AlertDialogTrigger className="hidden"></AlertDialogTrigger>
           <AlertDialogContent>
@@ -146,16 +147,24 @@ export const CreateDeviceForm = ({ children }: { children: ReactNode }) => {
                 You have added new device. Please save token below.
               </AlertDialogTitle>
               <AlertDialogDescription>
-                Token below is used to authorize your device in out API. Be sure
+                Token below is used to authorize your device in our API. Be sure
                 to save is somewhere else and keep it safe. You will not be able
-                to access this code again.
+                to access this code again. You are also given a unique
+                identifer. Please also save it. However you will be able to see
+                this identifier later.
               </AlertDialogDescription>
+              <Label>Token:</Label>
               <Textarea
-                value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhMjU1YzRlNC1hOGVmLTQxOGYtYmI0My1iYTFmOTZlZTY1MGUiLCJpYXQiOjE3MzY3ODM3OTEsImV4cCI6MTc2ODMxOTc5MX0.hz02d1QjMRZV_t3_SsoPOKLqjupL_KUgHCeAVgo9JqE"
+                value={data.token}
                 className="break-all h-32 resize-none"
                 readOnly
-              ></Textarea>
-              {/* {data.token} */}
+              />
+              <Label>Unique identifier:</Label>
+              <Textarea
+                value={data.uuid}
+                className="break-all  min-h-0 resize-none"
+                readOnly
+              />
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogAction className="w-full">
