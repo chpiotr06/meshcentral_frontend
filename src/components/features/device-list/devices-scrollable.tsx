@@ -24,10 +24,6 @@ export const Device = ({ device, setSelectedDevice }: DeviceProps) => {
           <div>{device.ipv4}</div>
         </div>
         <div className="flex flex-row gap-2 align-middle">
-          <Badge>IPv4</Badge>
-          <div>{device.ipv4}</div>
-        </div>
-        <div className="flex flex-row gap-2 align-middle">
           <Badge>MAC</Badge>
           <div>{device.mac}</div>
         </div>

@@ -10,8 +10,8 @@ const RouteMap = ({ deviceUuid }: { deviceUuid: string | null }) => {
 
   return (
     <MapContainer
-      center={[50.062332, 19.937573]}
-      zoom={13}
+      center={[52.160455, 19.533691]}
+      zoom={7}
       scrollWheelZoom={true}
       className="w-full h-[calc(100vh-56px-2*16px)] rounded-lg border z-10"
     >
