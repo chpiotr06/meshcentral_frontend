@@ -50,10 +50,12 @@ export const CreateDeviceForm = ({ children }: { children: ReactNode }) => {
     },
   });
 
-  const { mutate, isPending, isSuccess, data } = useAddDeviceMutation(() => {
-    setOpen(false);
-    form.reset();
-  });
+  const { mutate, isPending, isSuccess, data, reset } = useAddDeviceMutation(
+    () => {
+      setOpen(false);
+      form.reset();
+    }
+  );
 
   const onSubmit = (values: z.infer<typeof schema>) => {
     mutate(values);
@@ -167,7 +169,7 @@ export const CreateDeviceForm = ({ children }: { children: ReactNode }) => {
               />
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogAction className="w-full">
+              <AlertDialogAction className="w-full" onClick={() => reset()}>
                 I saved this token. Close this window.
               </AlertDialogAction>
             </AlertDialogFooter>

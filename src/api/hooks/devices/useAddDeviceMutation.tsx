@@ -46,8 +46,8 @@ export const useAddDeviceMutation = (successCallback: () => void) => {
         title: "Successfully added new device",
       });
       queryClient.invalidateQueries({ queryKey: ["devices"] });
-      reset();
+      queryClient.invalidateQueries({ queryKey: ["devices-with-geo"] });
     },
   });
-  return { data, mutate, isError, isSuccess, isPending };
+  return { data, mutate, isError, isSuccess, isPending, reset };
 };
