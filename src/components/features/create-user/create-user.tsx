@@ -38,77 +38,82 @@ export const CreateUser = () => {
   };
 
   return (
-    <Card>
+    <Card className="max-w-3xl mx-auto mt-8">
       <CardHeader>
         <CardTitle>Add user</CardTitle>
-        <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="example@example.com" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      Email of a user you whish to add to the system
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="**********"
-                        {...field}
-                        type="password"
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      Password of a user you want to add to the system. Remember
-                      to use secure passwords
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="confirm"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Confirm password</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="**********"
-                        {...field}
-                        type="password"
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      Provide password once again to check if they are the same
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <OrganizationSelector />
-              <Button type="submit" disabled={isPending || isSuccess}>
-                {isPending ? <Loader2 /> : "Submit"}
-              </Button>
-            </form>
-          </Form>
-        </CardContent>
       </CardHeader>
+
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="example@example.com" {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    Email of a user you whish to add to the system
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="**********"
+                      {...field}
+                      type="password"
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    Password of a user you want to add to the system. Remember
+                    to use secure passwords
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="confirm"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Confirm password</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="**********"
+                      {...field}
+                      type="password"
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    Provide password once again to check if they are the same
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <OrganizationSelector />
+            <Button
+              type="submit"
+              disabled={isPending || isSuccess}
+              className="mt-2"
+            >
+              {isPending ? <Loader2 /> : "Submit"}
+            </Button>
+          </form>
+        </Form>
+      </CardContent>
     </Card>
   );
 };
