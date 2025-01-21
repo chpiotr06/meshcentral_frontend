@@ -29,7 +29,6 @@ export const useAddUserWithOrgMutation = () => {
       return data;
     },
     onError: () => {
-      console.log("error");
       toast({
         variant: "destructive",
         duration: 5000,
@@ -37,8 +36,6 @@ export const useAddUserWithOrgMutation = () => {
       });
     },
     onSuccess: () => {
-      console.log("success");
-
       toast({
         variant: "success",
         duration: 5000,

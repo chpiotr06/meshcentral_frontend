@@ -1,3 +1,5 @@
+import { Map } from "@/components/features/main-map/map";
+
 export default function DashboardPage() {
-  return <>Not authenticanted user should not see this</>;
+  return <Map />;
 }

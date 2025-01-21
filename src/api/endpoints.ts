@@ -17,4 +17,10 @@ export const ENDPOINTS = {
     bulkAssign: `${API_BASE}${API_PREFIX}/users/assign-bulk`,
     noOrg: `${API_BASE}${API_PREFIX}/users/no-org`,
   },
+  devices: {
+    base: `${API_BASE}${API_PREFIX}/devices`,
+    withGeolocation: `${API_BASE}${API_PREFIX}/devices/with-geolocation`,
+    geolocations: (uuid: string | null) =>
+      `${API_BASE}${API_PREFIX}/devices/${uuid}`,
+  },
 };

@@ -9,4 +9,8 @@ export const routing = {
     addUser: "/dashboard/admin/add-user",
     assignUser: "/dashboard/admin/assign-user",
   },
+  devices: {
+    root: "/dashboard/devices",
+    addDevice: "/dashboard/devices/add",
+  },
 };
