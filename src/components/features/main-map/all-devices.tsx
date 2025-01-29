@@ -11,7 +11,7 @@ const AllDevices = () => {
   return (
     <MapContainer
       center={[52.160455, 19.533691]}
-      zoom={7}
+      zoom={6}
       scrollWheelZoom={true}
       className="w-full h-[calc(100vh-56px-2*16px)] rounded-3xl z-10"
     >

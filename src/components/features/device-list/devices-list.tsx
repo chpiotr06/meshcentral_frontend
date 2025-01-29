@@ -10,9 +10,9 @@ export const DevicesList = () => {
   const [selectedDevice, setSelectedDevice] = useState<string | null>(null);
 
   return (
-    <div className="grid grid-cols-4 p-4 gap-4">
+    <div className="grid grid-cols-3 p-4 gap-4">
       <DevicesScrollable setSelectedDevice={setSelectedDevice} />
-      <div className="col-span-3">
+      <div className="col-span-2">
         <RouteMap deviceUuid={selectedDevice} />
       </div>
     </div>

@@ -73,7 +73,7 @@ export const AssignUser = () => {
   return (
     <div className="grid grid-cols-2 w-[50%] mx-auto gap-6 mt-6">
       <div>
-        <div className="text-2xl mb-4">Select users to add to organization</div>
+        <div className="text-2xl mb-4">Add user to organization</div>
         <ScrollArea className="w-full p-2 border rounded-md gap-4 h-[500px]">
           {!users ? (
             <Loader2 className="animate-spin w-40 h-40" />

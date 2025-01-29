@@ -31,10 +31,10 @@ export const Device = ({ device, setSelectedDevice }: DeviceProps) => {
           <Badge>Firmware Version</Badge>
           <div>{device.firmwareVersion}</div>
         </div>
-        <div className="flex flex-row gap-2 align-middle">
-          <Badge>Added at</Badge>
-          <div>{new Date(device.createdAt).toLocaleString()}</div>
-        </div>
+      </div>
+      <div className="mt-1 flex flex-row gap-2 align-middle">
+        <Badge>Added at</Badge>
+        <div>{new Date(device.createdAt).toLocaleString()}</div>
       </div>
       <div className="flex flex-row gap-2 align-middle mt-1">
         <Badge>UUID</Badge>
